@@ -4,10 +4,12 @@ Give Claude a brand reference, get a complete design system page and a print-rea
 
 ## What you get
 
-1. **`design-system.html`** — a scrollable dark-theme reference page covering colors, typography, principles, components, icons, and wordmarks.
+1. **`design-system.html`** — a scrollable reference page covering colors, typography, principles, components, icons, and wordmarks.
 2. **`brand-book-a4.html` + `brand-book-a4.pdf`** — a single A4 portrait page fitting the brand topline onto one shareable poster.
 
 Both outputs are self-contained HTML (Google Fonts CDN + inline CSS + inline SVG). No build step. The PDF is rendered via headless Edge/Chrome.
+
+**The toolkit has no opinions about fonts, colors, or themes.** Everything comes from the reference you give Claude — the extracted brand is what you get back.
 
 ## Quick start
 
@@ -30,8 +32,7 @@ design-system/
 │       └── design-system/
 │           ├── SKILL.md                       # The skill definition
 │           └── examples/
-│               ├── design-system.html         # Filled example (Helio Studio)
-│               └── brand-book-a4.html         # Filled example (Helio Studio)
+│               └── template.html              # Structural skeleton with {{TOKENS}} to fill
 ├── CLAUDE.md
 └── README.md
 ```

@@ -1,0 +1,177 @@
+<!doctype html>
+<!--
+  A4 Brand Book — Structural Skeleton
+  Replace every {{TOKEN}} with values extracted from the user's brand reference.
+  Drop any section that has no source material. Add sections the brand needs.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{{BRAND_NAME}} — Brand Book</title>
+<!-- Replace with the brand's actual Google Fonts link -->
+<link href="https://fonts.googleapis.com/css2?family={{DISPLAY_FONT}}&family={{MONO_FONT}}&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary:    {{PRIMARY_HEX}};
+    --secondary:  {{SECONDARY_HEX}};
+    --tertiary:   {{TERTIARY_HEX}};
+    --bg:         {{BG_HEX}};
+    --surface:    {{SURFACE_HEX}};
+    --border:     {{BORDER_HEX}};
+    --text:       {{TEXT_HEX}};
+    --muted:      {{MUTED_HEX}};
+    --display-font: '{{DISPLAY_FONT_NAME}}', sans-serif;
+    --mono-font:    '{{MONO_FONT_NAME}}', monospace;
+  }
+
+  @page { size: A4; margin: 0; }
+  html, body { margin: 0; padding: 0; background: var(--bg); }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page {
+    width: 210mm; height: 297mm;
+    background: var(--bg); color: var(--text);
+    font-family: var(--display-font);
+    padding: 18mm 16mm 14mm;
+    display: flex; flex-direction: column; gap: 8mm;
+    position: relative; overflow: hidden;
+  }
+
+  .head { display: flex; align-items: center; justify-content: space-between; gap: 12mm; }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand h1 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+  .brand .sub { margin: 0; font-size: 10px; color: var(--muted); font-family: var(--mono-font); letter-spacing: 1.5px; text-transform: uppercase; }
+  .brand-meta { text-align: right; font-family: var(--mono-font); font-size: 9px; color: var(--muted); letter-spacing: 1.2px; text-transform: uppercase; }
+  .brand-meta .tag { color: var(--primary); }
+
+  .section-label { font-family: var(--mono-font); font-size: 10px; letter-spacing: 2px; color: var(--primary); text-transform: uppercase; margin-bottom: 6px; }
+
+  .colors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; }
+  .swatch { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .swatch .fill { height: 26mm; }
+  .swatch .meta { padding: 8px 10px; background: var(--surface); }
+  .swatch .tier { font-size: 11px; font-weight: 700; display: block; }
+  .swatch .hex { font-family: var(--mono-font); font-size: 10px; color: var(--muted); display: block; margin-top: 2px; }
+  .swatch .use { font-size: 9.5px; color: var(--muted); line-height: 1.35; margin-top: 4px; display: block; }
+
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+  .card { border: 1px solid var(--border); border-radius: 8px; padding: 6mm; background: var(--surface); }
+
+  .type-display { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); line-height: 1; margin: 0; }
+  .type-body { font-size: 11px; color: var(--muted); line-height: 1.5; margin: 3mm 0 0; }
+  .type-mono { font-family: var(--mono-font); font-size: 9.5px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 3mm; display: block; }
+
+  .principles ul { margin: 0; padding: 0 0 0 4mm; font-size: 10px; color: var(--muted); line-height: 1.55; }
+  .principles li::marker { color: var(--primary); }
+
+  .products { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4mm; }
+  .product { border: 1px solid var(--border); border-radius: 8px; padding: 5mm 3mm; background: var(--surface); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .product .dot { width: 28px; height: 28px; border-radius: 6px; }
+  .product .name { font-size: 10.5px; font-weight: 700; }
+  .product .hex { font-family: var(--mono-font); font-size: 8.5px; color: var(--muted); }
+  .product .role { font-size: 8.5px; color: var(--muted); }
+
+  .wordmarks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; }
+  .wm { border: 1px solid var(--border); border-radius: 8px; padding: 6mm; background: var(--surface); display: flex; flex-direction: column; gap: 6px; min-height: 30mm; justify-content: center; }
+  .wm .lockup { display: flex; align-items: center; gap: 10px; }
+  .wm .name { font-weight: 800; font-size: 18px; letter-spacing: 4px; color: var(--text); text-transform: uppercase; }
+  .wm .name .lo { font-weight: 300; color: var(--muted); }
+  .wm .tag { font-size: 10px; color: var(--muted); line-height: 1.4; }
+  .wm .mono { font-family: var(--mono-font); font-size: 8.5px; color: var(--muted); letter-spacing: 1.2px; text-transform: uppercase; margin-top: auto; display: block; }
+
+  .foot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; padding-top: 4mm; border-top: 1px solid var(--border); font-family: var(--mono-font); font-size: 8.5px; color: var(--muted); letter-spacing: 1.2px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEAD -->
+  <div class="head">
+    <div class="brand">
+      <!-- Replace with the brand's actual logo SVG -->
+      {{LOGO_SVG}}
+      <div>
+        <h1>{{BRAND_NAME}} Brand Book</h1>
+        <p class="sub">{{BRAND_FAMILY_SUBLINE}}</p>
+      </div>
+    </div>
+    <div class="brand-meta">
+      v1 · {{DATE}}<br/>
+      <span class="tag">{{TAGLINE}}</span>
+    </div>
+  </div>
+
+  <!-- COLOR HIERARCHY -->
+  <div>
+    <div class="section-label">Color Hierarchy</div>
+    <div class="colors">
+      <div class="swatch"><div class="fill" style="background:var(--primary)"></div><div class="meta"><span class="tier" style="color:var(--primary)">Primary</span><span class="hex">{{PRIMARY_HEX}}</span><span class="use">{{PRIMARY_USAGE}}</span></div></div>
+      <div class="swatch"><div class="fill" style="background:var(--secondary)"></div><div class="meta"><span class="tier" style="color:var(--secondary)">Secondary</span><span class="hex">{{SECONDARY_HEX}}</span><span class="use">{{SECONDARY_USAGE}}</span></div></div>
+      <div class="swatch"><div class="fill" style="background:var(--tertiary)"></div><div class="meta"><span class="tier" style="color:var(--tertiary)">Tertiary</span><span class="hex">{{TERTIARY_HEX}}</span><span class="use">{{TERTIARY_USAGE}}</span></div></div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY + PRINCIPLES -->
+  <div class="twocol">
+    <div>
+      <div class="section-label">Typography</div>
+      <div class="card">
+        <p class="type-display">{{DISPLAY_SAMPLE_LINE_1}}<br/>{{DISPLAY_SAMPLE_LINE_2}}</p>
+        <p class="type-body">{{TYPOGRAPHY_DESCRIPTION}}</p>
+        <span class="type-mono">{{MONO_FONT_NAME}} · Labels · Codes</span>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">Principles</div>
+      <div class="card principles">
+        <ul>
+          <!-- Insert the brand's own principles. Drop this section if the brand doesn't document any. -->
+          <li>{{PRINCIPLE_1}}</li>
+          <li>{{PRINCIPLE_2}}</li>
+          <li>{{PRINCIPLE_3}}</li>
+          <li>{{PRINCIPLE_4}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT FAMILY (optional — drop if not applicable) -->
+  <div>
+    <div class="section-label">Product Family</div>
+    <div class="products">
+      <!-- Repeat per product/team member -->
+      <div class="product"><div class="dot" style="background:{{P1_COLOR}}"></div><div class="name" style="color:{{P1_COLOR}}">{{P1_NAME}}</div><div class="hex">{{P1_COLOR}}</div><div class="role">{{P1_ROLE}}</div></div>
+      <!-- ...up to 6 -->
+    </div>
+  </div>
+
+  <!-- WORDMARKS -->
+  <div>
+    <div class="section-label">Wordmarks · Lockups</div>
+    <div class="wordmarks">
+      <div class="wm">
+        <div class="lockup">{{LOGO_SVG_SMALL}} <span class="name">{{BRAND_NAME_UPPER}}</span></div>
+        <p class="tag">{{LOCKUP_1_NOTE}}</p>
+        <span class="mono">Mark + wordmark</span>
+      </div>
+      <div class="wm">
+        <div class="lockup"><span class="name">{{UMBRELLA_PART1}}<span class="lo">{{UMBRELLA_PART2}}</span></span></div>
+        <p class="tag">{{LOCKUP_2_NOTE}}</p>
+        <span class="mono">Split weight lockup</span>
+      </div>
+      <div class="wm">
+        <div class="lockup"><span class="name" style="color:var(--primary)">{{STUDIO_PART1}}<span class="lo" style="color:var(--text);font-weight:800">{{STUDIO_PART2}}</span></span></div>
+        <p class="tag">{{LOCKUP_3_NOTE}}</p>
+        <span class="mono">Accent lockup</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <span>{{BRAND_NAME}} Design System</span>
+    <span>{{FILE_PATH}}</span>
+  </div>
+</div>
+</body>
+</html>
